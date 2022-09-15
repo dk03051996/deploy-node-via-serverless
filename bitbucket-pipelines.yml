@@ -1,0 +1,51 @@
+image: metacollective/serverless_ci
+pipelines:
+  branches:
+    default:
+      - step:
+          script:
+            - npm install
+    master:
+      - step:
+          caches:
+              - node
+              - pip
+          script:
+              - npm install
+              - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+              - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+              - sls deploy --stage development --region ap-south-1
+      
+    development:
+      - step:
+          caches:
+              - node
+              - pip
+          script:
+              - npm install
+              - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+              - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+              - sls deploy --stage development --region ap-south-1
+        
+
+    ramesh:
+      - step:
+          caches:
+              - node
+              - pip
+          script:
+              - npm install
+              - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+              - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+              - sls deploy --stage development --region ap-south-1
+      
+    vt:
+      - step:
+          caches:
+              - node
+              - pip
+          script:
+              - npm install
+              - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+              - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+              - sls deploy --stage production --region ap-south-1
